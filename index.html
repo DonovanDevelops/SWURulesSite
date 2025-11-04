@@ -1,0 +1,1146 @@
+<html class="darkmode">
+    <head>
+        <title>Star Wars: Unlimited Offline Judge Tool</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+        <link rel="icon" href="images/judge.ico">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <script src="cards_data.js"></script>
+        <script src="pdf_images.js"></script>
+        <script type="text/javascript" src="https://acrobatservices.adobe.com/view-sdk/viewer.js"></script>
+        <meta http-equiv="Content-Disposition" content="attachment; filename=rules_documents/Star_Wars_Unlimited_Comp_Rules_6_0_d3d16e8da4.pdf">
+        <meta http-equiv="Content-Disposition" content="attachment; filename=rules_documents/Fantasy_Flight_Games_Master_Event_Document_v_1_3_1ab94944d0.pdf">
+        <meta http-equiv="Content-Disposition" content="attachment; filename=rules_documents/SWU_Tournament_Regulations_v1_4_be2d6f95d9.pdf">
+    </head>
+    <body>
+        <div class="stickyContent">
+            <h1><span>Star Wars: Unlimited Judge Tool</span><svg onclick="toggleMenu();" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M64 360a56 56 0 1 0 0 112 56 56 0 1 0 0-112zm0-160a56 56 0 1 0 0 112 56 56 0 1 0 0-112zM120 96A56 56 0 1 0 8 96a56 56 0 1 0 112 0z"/></svg></h1>
+            <nav>
+                <div id="cardDataTab" class="activeTab" onclick="$('#searchInput').prop('disabled', false);$('.contentContainer').hide();$('#cardDataContainer').show();$('.activeTab').removeClass('activeTab');$(this).addClass('activeTab');">Cards</div>
+                <div id="ruleDataTab" onclick="$('#searchInput').prop('disabled', false);$('.contentContainer').hide();$('.activeTab').removeClass('activeTab');$('#ruleDataContainer').show(); $(this).addClass('activeTab');">Additional Rulings</div>
+                <div id="crDataTab" onclick="$('#searchInput').prop('disabled', true);$('.contentContainer').hide();$('#crContainer').show();$('.activeTab').removeClass('activeTab');$(this).addClass('activeTab');docLoaded('cr')">CR v6.0.0</div>
+                <div id="medDataTab" onclick="$('#searchInput').prop('disabled', true);$('.contentContainer').hide();$('#medContainer').show();$('.activeTab').removeClass('activeTab');$(this).addClass('activeTab');docLoaded('med');">MED v1.3</div>
+                <div id="trDataTab" onclick="$('#searchInput').prop('disabled', true);$('.contentContainer').hide();$('#trContainer').show();$('.activeTab').removeClass('activeTab');$(this).addClass('activeTab');docLoaded('tr');">TR v1.4</div>
+                <div id="clarificationDataTab" onclick="$('#searchInput').prop('disabled', true);$('.contentContainer').hide();$('#ruleClarificationContainer').show();$('.activeTab').removeClass('activeTab');$(this).addClass('activeTab');">Rules Clarifications</div>
+                <div id="policyDataTab" onclick="$('#searchInput').prop('disabled', true);$('.contentContainer').hide();$('#policyClarificationContainer').show();$('.activeTab').removeClass('activeTab');$(this).addClass('activeTab');">Policy Clarifications</div>
+                <div id="legalityDataTab" onclick="$('#searchInput').prop('disabled', true);$('.contentContainer').hide();$('#legalityContainer').show();$('.activeTab').removeClass('activeTab');$(this).addClass('activeTab');">Card Legality</div>
+            </nav>
+            <search>
+                <input type="text" id="searchInput" placeholder="Search in Cards and Additional Rulings..." oninput="updateSearch();">
+                <div id="colorToggle" class="darkmode" onclick="$(this).toggleClass('darkmode');$('#darkmode').toggle();$('html').toggleClass('darkmode');"><div></div></div>
+            </search>
+        </div>
+        <div class="content">
+            <div class="contentContainer" id="cardDataContainer">
+                <div class="sectionDescription">This is a list of all cards alphabetically. Select a card to view its images, text, and known rulings. (Updated 11/02/2025)</div>
+                <div class="sectionContent" id="cardContent"></div> 
+            </div>
+            <div class="contentContainer" id="ruleDataContainer" style="display: none;">
+                <div class="sectionDescription">This is a list of all known additional rulings from the SWU website. Rules are grouped by set, then alphabetically by card name, then by date. (Updated 11/02/2025)</div>
+                <div class="sectionContent" id="ruleContent"></div> 
+            </div>
+            <div class="contentContainer" id="crContainer" style="display:none;">
+                <div><a class="pdfLink" href="rules_documents/Star_Wars_Unlimited_Comp_Rules_6_0_d3d16e8da4.pdf">Direct Link to PDF</a></div>
+                <object onload="docLoaded('cr');" onerror="$(this).hide();$('#crFallback').show();" data="rules_documents/Star_Wars_Unlimited_Comp_Rules_6_0_d3d16e8da4.pdf" type="application/pdf" width="100%" height="100%">
+                    <param name="download" value="true">
+                </object>
+                <div class="pdfMessage">If you are only able to see an image of the first page of the PDF or you see this message above the PDF, your browser does not support the PDF viewer. Please click the link above to view and download the PDF from there so it is available to you offline.</div>
+                <div id="crFallback" style="display: none;"><div></div></div>
+            </div>
+            <div class="contentContainer" id="medContainer" style="display:none;">
+                <div><a class="pdfLink" href="rules_documents/Fantasy_Flight_Games_Master_Event_Document_v_1_3_1ab94944d0.pdf">Direct Link to PDF</a></div>
+                <object onload="docLoaded('cr');" onerror="$(this).hide();$('#medFallback').show();" data="rules_documents/Fantasy_Flight_Games_Master_Event_Document_v_1_3_1ab94944d0.pdf" type="application/pdf" width="100%" height="100%">
+                    <param name="download" value="true">
+                </object>
+                <div class="pdfMessage">If you are only able to see an image of the first page of the PDF or you see this message above the PDF, your browser does not support the PDF viewer. Please click the link above to view and download the PDF from there so it is available to you offline.</div>
+                <div id="medFallback" style="display: none;"><div></div></div>
+            </div>
+            <div class="contentContainer" id="trContainer" style="display:none;">
+                <div><a class="pdfLink" href="rules_documents/SWU_Tournament_Regulations_v1_4_be2d6f95d9.pdf">Direct Link to PDF</a></div>
+                <object onload="docLoaded('tr');" onerror="$(this).hide();$('#trFallback').show();" data="rules_documents/SWU_Tournament_Regulations_v1_4_be2d6f95d9.pdf" type="application/pdf" width="100%" height="100%">
+                    <param name="download" value="true">
+                </object>
+                <div class="pdfMessage">If you are only able to see an image of the first page of the PDF or you see this message above the PDF, your browser does not support the PDF viewer. Please click the link above to view and download the PDF from there so it is available to you offline.</div>
+                <div id="trFallback" style="display: none;"><div></div></div>
+            </div>
+            <div class="contentContainer" id="ruleClarificationContainer" style="display:none;">
+                <div class="sectionContent">Coming Soon!</div>
+            </div>
+            <div class="contentContainer" id="policyClarificationContainer" style="display:none;">
+                <div class="sectionContent" id="updatePolicyInsideHere">
+                    <div class="container">
+        
+        
+<h2>Disclaimer</h2>
+While these rulings and philosophies are coming from knowledgeable sources (most frequently coming from developers of the game), they are <b>subject to change</b> with updates to the tournament regulations and master event document. These generally represent the Rules As Intended and may be included in future updates to those documents.
+
+<h2>Policy Clarifications and Updates</h2>
+
+As we here at Cascade games have meetings with some of the organized play team at FFG and talk about policy philosophy, we'll be able to provide some updates and insights.
+<br><br>
+This is something that the current documents don't cover in depth, because it's a very complicated topic, and something that needs to go through several rounds of approvals before being published. 
+<br><br>
+Because it takes longer to publish and consequently longer to make revisions, those documents aren't going to be immediately available.  However, at Cascade, we're a smaller team and can make revisions and retractions more easily.
+<br><br>
+To be clear, this is not what policy currently is, but these are some of the philosophical ideas that FFG currently is turning towards. These ideas and policies may not be published as such, but they're a good best practice to follow in the interim if you're uncertain of how to rule.
+<br><br>
+Overall, the guiding philosophy of FFG is to do what we can to get games to their natural conclusions. That means that if we’re able to fix a situation, we should do that. If we’re not able to wholly fix something, getting the game as close as possible, and then having the players play on. Game losses should be an absolute last resort, and avoided if at all possible.
+<br><br>
+If you are the floor judge of an event you should <b><i>never deviate</i></b>. If you are a floor judge and believe a deviation is appropriate, it should be brought to the head judge. It is important to stick to the comprehensive rules, the master event document, and tournament regulations to ensure a consistent experience for players. Furthermore, if a judge deviates from policy, it increases the likelihood that a player expresses frustration about the judge, and not towards the documents.
+<hr>
+We have a few specific clarifications regarding policy - both from the Master Event Document and Tournament Regulations.
+<br><br>
+<ul><li>Currently, the MED says that judges can only answer questions about cards that are in-play. This restriction will be removed, and judges are able to answer questions about any cards or mechanics.</li>
+<ul><li>Judges should of course continue to avoid giving outside assistance</li>
+<li>If players want to ask questions about cards in their hand, or cards they suspect that their opponent may have in their hand, they can ask to speak to the judge away from the table, to preserve strategic integrity</li></ul>
+<li>Some remedies in the Master Event Document, including for looking at or drawing extra cards are punitive in nature. They go beyond just fixing the issue - these fixes in particular set aside the excess cards, rather than having them shuffled into the unknown portion of the deck.</li>
+<ul><li>If a player draws extra cards or sees cards they shouldn’t have, the opponent will select from the appropriate set which cards to remove (as written in current policy) and then they will be shuffled into the random portion of the deck. If the position of some cards are known (due to Thrawn or Restock), those cards are not shuffled.</li>
+<li>There will be a comprehensive sweep of the documents to make sure that remedies bring the game as close as possible to their natural state, while mitigating any potential advantage gained.</li></ul>
+<li>If a player commits a gameplay error and part of the action is illegal, the entire action is backed up.</li>
+<ul><li>If a player plays Vanquish on an enemy leader unit, and that’s the only enemy unit in play, they are not required to play Vanquish, and the entire action is rewound.</li>
+<li>If a player attacks an enemy base, and then their opponent indicates that there is a Sentinel unit, they are not required to attack that unit, and the entire action is rewound.</li></ul>
+<li>If a player takes an action, but wishes to take back that action, before they gain any information, they are allowed to do so.</li>
+<ul><li>Information can be seeing new card faces (drawing or looking at cards due to the resolution of an ability)</li>
+<li>Information can be an opponent’s action or the resolution of an opponent’s ability</li></ul>
+<li>Both players are responsible for maintaining the game state.</li>
+<ul><li>If a player makes an illegal play, their opponent is obligated to point it out if they notice it</li>
+<ul><li>Failure to do so, while knowing it is not permitted and with the intention of gaining an advantage is cheating. Many players will not be aware of this rule, and so it is important to focus on education. </li></ul>
+<li>This is particularly relevant when a player controls an effect that changes the game rules for their opponent (Regional Governor, Entrench)</li>
+<li>This includes triggered abilities other than ones that say “you may”</li>
+<ul><li>This will be new policy to many players - be sure to remind them</li>
+<li>This includes bounties on your cards. You must ensure that your opponent is aware of the trigger - it is your trigger, but their choice. You do not have to remind opponents of Bounties created by cards they own.</li></ul></ul>
+<li>While there is currently no policy for shortcuts (abbreviating actions and ending at a legal game state) or out-of-order sequencing (“OOOS” doing things in a technically illegal order, but ending at a legal game state and not gaining new information), this will be looked into</li>
+<ul><li>Shortcuts can include attacking with several units simultaneously if your opponent has claimed the initiative</li>
+<li>OOOS can include a player playing a card from their hand as a resource before drawing during regroup</li></ul>
+<li>Head Judges should be primary investigator for any and all cheating investigations</li>
+<ul><li>Current documents indicate floor judges should - but they should only ask an initial question or two. If they feel that an in depth cheating investigation may be required, they should get the head judge immediately.</li></ul>
+
+<li>On a much broader scope - they want to develop a short set of policy guidelines for Casual-Tier play. The fixes and remedies in the MED can be used at Casual-tier play, but penalties and infractions should not, other than those regarding inappropriate conduct (poor behavior, cheating etc.)</li></ul>
+
+<h2>Event Specific Policies</h2>
+<ul><li>If a player would earn a Galactic Championship invite or bye, but has already earned that prize the invite and bye are passed to the next highest ranked player who does not already have an invite.</li></ul>
+<h2>January 2025 - Clarifications from Cascade</h2>
+The Organized Play team at FFG is always growing and is working on developing and reinforcing their official events. For the time being, they have asked Cascade to provide guidance for a variety of questions and scenarios that have come up as events play out. While you should follow the philosophy written below, as policy from FFG continues to crystalize and improve, their updates and clarifications may contradict what is included here. When there is a direct contradiction from future updates, follow the newest information.
+
+<p>
+<strong>How are judges meant to deal with suspected counterfeit cards?</strong>
+</p>
+<p>
+Judges are not expected to be trained in the identification of counterfeits, and should not go to excessive lengths to identify them. Due to print run errors, there are a number of cards from both the original print run and later print runs of set one without the holofoil security stamp, so the stamp missing from a card is not an indicator of whether or not a card is counterfeit. Cards can also come from different print shops and have slightly different material feel.
+</p>
+<p>
+Judges should absolutely not perform any destructive tests (bend tests, rip tests, water tests) on cards they do not personally own. 
+</p>
+<p>
+If a judge determines the cards are counterfeits, they should <em>not </em>confiscate them or destroy them. They are still the player’s property.
+</p>
+<p>
+If a player is knowingly playing with counterfeits, that is considered cheating. If a player is unknowingly playing with counterfeits in their main deck it will result in a deck error. 
+</p>
+<p>
+<strong>Any official policy about standby judges?</strong>
+</p>
+<p>
+Standby judges are up to the discretion of event organizers. A judge on standby is allowed to play in the event.
+</p>
+<p>sp
+A judge can not be activated and assigned to work an event that they have played in, but can be assigned to assist with other events (ie. if they played in the main event, they can judge side events, but not the main event). Generally, standby judges should be activated at the beginning of the day, so this should come up infrequently.
+</p>
+<p>
+<strong>Resolving deck list errors</strong>
+</p>
+<p>
+If cards need to be added to a deck, and additional copies cannot be found, proxies should be issued. This also applies in the case of marked cards.
+</p>
+<p>
+These infractions do come with a game loss, and so it is not “free”. If you believe a player is intentionally playing an illegal deck in order to take advantage of this policy, investigate for cheating. 
+</p>
+<p>
+The suggestion of Resource cards has been suggested to FFG, and they’re looking into the logistical feasibility and considering it. Resource cards would play a role similar to basic lands in Magic, Basic Energy in Pokemon and Cracked Baubles in Flesh and Blood. They would have no text, no cost, and only be able to be played face down as a resource. They could be discarded for costs that require discarding a generic card. If a player later in the event found appropriate replacements, they could replace the Resource cards with the authentic cards, to return to their original configuration with no penalty. If a player does so, they should alert a judge.
+</p>
+<p>
+This replacement also applies for issued proxies. If resource cards are available (or they are available at some events but not all) issuing resource cards instead of proxies to replace missing or invalid cards should be the default behavior, to mitigate the advantage gained.
+</p>
+<p>
+To be clear - RESOURCE CARDS DO NOT CURRENTLY EXIST AND PROXIES SHOULD BE ISSUED AT THIS TIME.
+</p>
+<p>
+<strong>Is “marked cards” penalty applied for different sleeves in sideboard?</strong>
+</p>
+<p>
+Marked cards should not apply to cards currently in the sideboard - this is true whether they’re registered in the sideboard or registered in the main deck but currently in the sideboard during a post-board game.
+</p>
+<p>
+Some players may switch sleeves to maintain an unmarked deck, but still want their other cards protected.
+</p>
+<p>
+Marked cards <em>only</em> applies to the cards that are currently in the deck. However, if you are applying a remedy for marked cards, include the cards in the sideboard in the remedy, to prevent future issues.
+</p>
+<p>
+<strong>Penalizing both players discourages judge calls</strong>
+</p>
+<p>
+If a player misses an error committed by the opponent, they should receive a warning, but no penalty points, unless they were actively involved in causing the error. Non-escalating warnings for issues like this allow for judges to track if a player is intentionally allowing their opponent to make mistakes to gain an advantage.
+</p>
+<p>
+If a player controls an effect that makes the action the player took illegal, they should receive the appropriate penalty points. For example, if a player has Del Meeko (SOR) in play, and their opponent does not pay the additional 1 for an event, <em>both</em> players should receive warnings and penalty points. This is to prevent a player from using a deck with rule-generating effects (Del Meeko, Sentinel, Regional Governor etc...) and letting their opponent make mistakes, and then calling a judge on them.
+</p>
+<p>
+If a player calls attention to an error their opponent made immediately - before any game actions have been taken, they should <em>not</em> receive a penalty.
+</p>
+<p>
+Some examples:
+</p>
+<p>
+NAP controls Del Meeko. AP plays Vanquish, exhausting 5 resources, and defeating Del Meeko. NAP puts Del Meeko into their discard, then claims initiative. While AP is considering their action, NAP realizes that AP should have paid six. Both players should receive penalty points in this situation.
+</p>
+<p>
+NAP controls Battlefield Marine. AP plays Vanquish, exhausting 4 resources and defeating the Marine. NAP puts the Marine into their discard, then realizes the error and calls for a judge. AP receives warning and appropriate penalty points. NAP receives no warning. This is close enough to “immediately”
+</p>
+<p>
+NAP controls Battlefield Marine. AP plays Vanquish, exhausting 4 resources and defeating the Marine. NAP puts the Marine into their discard, then claims the initiative. AP attacks with a unit, then passes. During regroup, NAP realizes the error and calls for a judge. AP receives warning and appropriate penalty points. NAP receives a warning but no penalty points.
+</p>
+<p>
+<strong>Does Repeated Infraction continually scale upwards?</strong>
+</p>
+<p>
+Nope. A Minor Gameplay Error should never result in more than an escalated penalty.
+</p>
+<p>
+<strong>When exactly does match start vs note taking vs deck list review?</strong>
+</p>
+<p>
+Players can begin to take notes as soon as they no longer have access to the decklist. The intent is that players have the knowledge of what to play around, but do not have access to a perfect decklist for the duration of the match.
+</p>
+<p>
+Once a player has presented their deck, they should no longer look at the decklist, and can begin to take notes.
+</p>
+<p>
+The player can <em>not</em> look at the decklist again during sideboarding between games.
+</p><p>
+<strong>What game setup actions are allowed prior to timer start of an event round?</strong>
+</p>
+<p>
+Players can complete mulligans and place their initial resources, but can not take any Actions before the round begins.
+</p>
+<p>
+If players start early - let them know that the round hasn’t started and to wait to begin play.
+</p>
+<p>
+<strong>Re-pairing after fixing incorrect match results?</strong>
+</p>
+<p>
+Whole rounds should not be re-paired unless there is a significant issue. Generally, individual matches should be repaired.
+</p>
+<p>
+For example, in Round 3, Match A is reported as 2-1 for AP defeating NAP, but the correct result is 2-1 with NAP defeating AP.
+</p>
+<p>
+This is discovered after pairings for round 4 are published and as the round is beginning. The scorekeeper should find the match that both AP and NAP are playing in R4, and send judges to those matches to pause them, and bring both AP and NAP to the scorekeeper station, to verify the match result. The scorekeeper can then remove AP and NAP from their current (incorrect) pairings) and pair them correctly. The scorekeeper should verify with both players (and with Melee match history) that AP and NAP have not played against their new opponents previously in the event.
+</p>
+<p>
+As long as this is caught at the beginning of the round (ie, before one of the players begins their match), it can be remedied in this way. Even if the match is not changed, the erroneous result should be fixed immediately, to ensure that future pairings are correct. 
+</p>
+<p>
+<strong>Official accessories contradict damage tracking policy?</strong>
+</p>
+<p>
+Damage tracking and layout policies have a small degree of flexibility. If both players mutually come to a consensus, there can be some modification to tracking.
+</p>
+<p>
+Ie. if both players are tracking both base damage totals with pen and paper, they do not also need a *third* record of dice on their base.
+</p>
+<p>
+However, if either player is not comfortable with a tracking method that a player proposes that is not in line with the tournament regulations, players should adhere to the TR. These instructions are to provide a baseline that players can revert to in case of disagreement, but do not need to be actively policed if players are comfortable with alternate methods.
+</p>
+<p>
+<strong>Base orientation?</strong>
+</p>
+<p>
+Bases should be closer to your opponent than your leader, with the top of the card (aspect, name and HP) closer to your opponent, and trait closer to you.
+</p>
+<p>
+However, like with the above question, rules regarding layout are to create a default standard and to have something to return to in case the layout is confusing for one player.
+</p>
+<p>
+If, for example, there was a deck that never deployed any units, and simply used cards in the discard, the area assigned for Ground and Space units would be unused. Putting cards from discard there, so both players can track that information goes against layout rules, but can make the game clearer.
+</p>
+<p>
+All that is to say it doesn’t matter if your base is facing you or your opponent, or if your base or leader is closer to them, so long as your opponent is able to understand the gamestate and are comfortable with these non-functional deviations.
+</p>
+<h2>February 2025 - Clarifications from Cascade</h2>
+
+<b>In a Casual Best of One format, do you always play exactly just one game even if the game ends in a draw?</b>
+<p>Nope - Best-of-One is actually “First to win one game”. Like how “best-of-three” is “first to two wins”, if games end in draws, you’ll play until you have a winner.</p>
+
+<b>How uniquely identified does a card on a decklist need to be?</b>
+<p>A judge reviewing the list needs to be confident in the identity of the card as listed. For example, as of February 18th, 2025 “Greedo” is uniquely identifiable, because there is only one Greedo. As another example “Slow on the Draw” is enough to identify Greedo, as his subtitle is enough to identify him. </p>
+
+<p>If in the opinion of the head judge, the identity of the card is obvious and unambiguous, they can treat it as not a decklist problem. If a player registers “Lom” on their decklist, and they’re playing Hondo Onaka/Blue, it is reasonable to assume the card is Lom Pyke - Dealer in Truths. If they’re playing Cad Bane/Tarkintown and have also registered Zuckuss, it’s reasonable to assume the card is 4-Lom.</p>
+
+<p>However, if the head judge feels the need to check the physical deck to confirm the identity of the card, this is an indication that the card as registered is not obvious.</p>
+
+<p>Notably, this will result in some amount of inconsistency from event to event, as some judges may be more familiar with the current decks in the metagame and may know which cards are being played. However, this inconsistency is only ever in favor of players. They have made an error in registering their decklist, and the penalty for that is a game loss. If the Head Judge believes that their error cannot gain them an advantage because the decklist is obvious, they can issue no penalty.</p>
+
+<h2>March 2025 - Clarifications from Cascade</h2>
+<b>Are there any rules text mitigating an infinite loop?</b>
+<p>If players are in an optional loop, the Active Player (or, if the loop includes both players becoming the active player, the player who initiated the loop) must make a choice to progress the gamestate differently or the players can agree to draw the game. This is because the game needs to proceed, and the player who is the active player or the player who initiated the loop is the one who made the choice to create this state. The player who initiated the loop is the player who took the action that made the loop possible, which is not necessarily the first player to take a looping action.</p>
+
+<p>If the players are in a non-optional loop (for example, if Stolen AT-Hauler said “<b>When Defeated</b>: Choose an opponent. Put Stolen AT-Hauler into play under that player’s control.” instead of "that player <i>may play</i>...") then the game is a draw.</p>
+
+<b>What is the proper identification of a miscut card brought to an event?</b>
+<p>Miscut cards must have the full name and subtitle of a card from the top name-bar visible to be legal. They are considered to be the card that has the full name visible. A card with two full names and subtitles can not be played. Miscut cards must also be indistinguishable from other cards in the deck while sleeved. It must also be able to verified as an authentic card.</p>
+
+<p>It is the responsibility of a player playing a miscut card to ensure that their opponent understands the proper identity of the card that they are playing, and its abilities/text.  If the HJ believes that a player is using miscut cards to intentionally create confusion and ambiguity in their communication, they can ask the player to play with a non-miscut version of the card.</p>
+
+<p>
+<strong>How are intentional draws penalized and enforced?</strong>
+</p>
+<p>
+Judges do not need to proactively enforce the policy that instructs players to not ID after they have begun their match, but educate players if they over hear them discussing the possibility after the round has started.
+</p>
+<p>
+<strong>Does counterfeit mean it has to look like an authentic card or are fake cards that look amazing but are clearly not authentic still considered Cheating?</strong>
+</p>
+<p>
+Any non-authentic card that a player is attempting to use in place of a card in their main deck, sideboard, or for leader and base, other than judge-issued proxies is considered a counterfeit and is not allowed. A 3D alter, as long as it can be verified that a complete, authentic card is a part of the construction may be allowed at the Head Judge’s discretion.
+</p>
+<p>
+If a player does not know that they are not allowed to play with these cards, it does not meet the definition of cheating, and the players should be educated and the cards replaced. “Treated as cheating” means that it is considered breaking the rules, but it still must meet the criteria that the player <em>knows</em> that they are breaking the rules before they are disqualified. Some players may assume that they’re allowed to play with non-authentic cards in certain situations and many players may not realize that their cards are counterfeit.
+</p>
+<p>
+If a player believes that they can play with the non-authentic cards they have, or don’t realize that their cards are not authentic, educate the player and have them replace the illegal cards, but do not disqualify them.
+</p>
+<p>
+<strong>Per policy only the act of prize splitting is Collusion?</strong>
+</p>
+<p>
+Following the philosophy covered elsewhere in Collusion, the act of offering a prize split itself is not collusion. Following through is. If you hear a player ask about or offer a prize split, educate them.
+</p>
+<p>
+<strong>What to do if players do not follow new zone draft policy and pass multiple packs?</strong>
+</p>
+<p>
+This is another one of those policies, like game state layout, that require you to use your discretion and judgment. If the player’s behavior is not disruptive to the event, you can leave it as is. If you believe the player is acting out of ignorance, you can explain the process to them when it would not be disruptive to the draft. Even if the player “knows better”, simply ask them to ensure that they zone draft, to help minimize potential issues.
+</p>
+<p>
+<strong>Is the time frame on "Flagged Gameplay Error" a requirement or a guideline/suggestion?</strong>
+</p>
+<p>
+Flagged Gameplay Errors do not upgrade or award penalty points.
+</p>
+<p>
+<strong>Are we concerned about smart watch wear/use?</strong>
+</p>
+<p>
+Judges are not expected to recognize all advancing interconnected technology. However, if recognized or if a player asks, smartwatches and other devices that the player has access to (such as smartglasses etc...) must meet the requirements for electronic devices, which includes turning off internet access and being visible to the opponent.
+</p>
+
+
+
+      </div>
+                </div>
+            </div>
+            <div class="contentContainer" id="legalityContainer" style="display:none;">
+                <div class="sectionContent">
+                    <h3>Card Legality Terms</h3>
+                    <ul>
+                        <li><b>Suspended: </b>This means that the card is currently illegal to play in the associated format. Suspended cards are reviewed every few months, likely around set releases. Cards that are suspended may be removed from the suspended list.</li>
+                        <li><b>Banned: </b>This means that the card is permanently illegal to play in the associated format. There are currently no banned cards.</li>
+                        <li><b>Restricted: </b>This means that the card is limited in what other cards can be in a deck with it or limited in what quantities it can be played in. There are currently no restricted cards.</li>
+                        <li><b>Errata: </b>This means that the card has received changes to its text or attributes. This can be <i>functional</i> errata, which changes how the card functions and interacts with the game rules. This can also be <i>non-functional</i> errata, which is usually grammar or templating updates, that change the wording on the card, but do not impact gameplay.</li>
+                    </ul>
+                    <hr>
+                    <h1>Premier</h1>
+                    <h2>Suspended Cards</h2>
+                    <ul>
+                        <li>Boba Fett - Collecting the Bounty</li>
+                        <li>Jango Fett - Concealing the Conspiracy</li>
+                        <li>DJ - Blatant Thief</li>
+                        <li>Triple Dark Raid</li>
+                        <li>Force Throw</li>
+                    </ul>
+                    <h2>Banned Cards</h2>
+                    <ul>
+                        <li>N/A</li>
+                    </ul>
+                    <h2>Restricted Cards</h2>
+                    <ul>
+                        <li>N/A</li>
+                    </ul>
+                    <hr>
+                    <h1>Twin Suns</h1>
+                    <h2>Suspended Cards</h2>
+                    <ul>
+                        <li>N/A</li>
+                    </ul>
+                    <h2>Banned Cards</h2>
+                    <ul>
+                        <li>N/A</li>
+                    </ul>
+                    <h2>Restricted Cards</h2>
+                    <ul>
+                        <li>N/A</li>
+                    </ul>
+                </div>
+            </div>
+        </content>
+        <style>
+            html {
+                background-color: var(--background-color);
+                font-family: "Space Mono", monospace !important;
+                font-weight: 400;
+                font-style: normal;
+                color: var(--color-text);
+                font-size: var(--font-size);
+            }
+            html {
+                --background-color: #f6f6f6;
+                --background-header: #f6f6f6;
+                --color-darker: #ececec;
+                --color-disabled: #fbfaff;
+                --color-lighter: #ebebeb;
+                --color-input: #ffffff;
+                --color-placeholder: #d7d9d9;
+                --color-text: #2f2f2f;
+                --color-border: #dadada;
+                --color-selected: #d5d5d5;
+                --color-link: #4abdb9;
+                --color-error: #c1191e;
+                --font-size: 14px;
+                --shadow: 0px 0px 0.5rem rgba(201, 201, 201, 0.3);
+                --shadow-inset: inset 0px 0px 10px rgba(157, 157, 157, 0.3);
+            }
+            html.darkmode {
+                --background-color: #2f2e34;
+                --background-header: #29282d;
+                --color-darker: #29282d;
+                --color-disabled: #29282d;
+                --color-lighter: #343339;
+                --color-input: #343339;
+                --color-placeholder: #6f6d77;
+                --color-text: #d4d6da;
+                --color-border: #403f45;
+                --color-selected: #434248;
+                --color-link: #4abdb9;
+                --color-error: #c1191e;
+                --shadow: 0px 0px 0.5rem rgba(0, 0, 0, 0.3);
+                --shadow-inset: inset 0px 0px 10px rgba(0, 0, 0, 0.3);
+            }
+            body {
+                margin: auto;
+                background-color: var(--background-color);
+                padding: 0;
+                box-sizing: border-box;
+            }
+            .stickyContent {
+                position: sticky;
+                top: 0;
+                background-color: var(--background-header);
+                border-bottom: 1px solid var(--color-border);
+                padding: 1rem;
+                box-sizing: border-box;
+            }
+            h1 {
+                font-size: 2rem;
+                line-height: 2rem;
+                margin-top: 0;
+            }
+            nav {
+                display: flex;
+                flex-direction: row;
+                justify-content: flex-start;
+                gap: 0.5rem;
+                border-bottom: 1px solid var(--color-border);
+                width: 100%;
+                padding-bottom: 1rem;
+                margin-bottom: 1rem;
+                box-sizing: border-box;
+                user-select: none;
+                flex-wrap: wrap;
+            }
+            nav > div {
+                cursor: pointer;
+                padding: 0.25rem 0.5rem;
+                border: 1px solid var(--color-border);
+                border-radius: 0.25rem;
+                box-shadow: var(--shadow);
+            }
+            .activeTab {
+                background-color: var(--color-selected);
+            }
+            a {
+                color: var(--color-link);
+            }
+            search {
+                width: 100%;
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                justify-content: flex-start;
+                gap: 0.5rem;
+                box-sizing: border-box;
+            }
+            search ::placeholder {
+                font-family: 'Space Mono', monospace;
+                font-size: 0.75rem;
+                color: var(--color-placeholder);
+            }
+            search input {
+                width: 100%;
+                padding: 0.5rem 0.5rem;
+                border: 1px solid var(--color-border);
+                border-radius: 0.25rem;
+                box-shadow: var(--shadow);
+                font-family: 'Space Mono', monospace;
+                background-color: var(--color-input);
+                color: var(--color-text);
+            }
+            search input:disabled {
+                background-color: var(--color-disabled);
+                box-shadow: var(--shadow-inset);
+                color: #ABABAB;
+                cursor: not-allowed;
+            }
+            #colorToggle {
+                height: 2.5rem;
+                width: 2.5rem;
+                border-radius: 0.25rem;
+                box-shadow: var(--shadow);
+                background-color: #535353;
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                justify-content: center;
+                cursor: pointer;
+            }
+            #colorToggle.darkmode {
+                background-color: #efefef;
+            }
+            #colorToggle > div {
+                height: 60%;
+                width: 60%;
+                border-radius: 2rem;
+                background-color: #858585;
+            }
+            #colorToggle.darkmode > div {
+                background-color: #cdcdcd;
+            }
+            .sectionDescription {
+                border-bottom: 1px solid var(--color-border);
+                padding: 1rem;
+            }
+            .sectionContent {
+                padding: 1rem;
+            }
+            .cardItem {
+                width: 100%;
+                padding: 1rem;
+                box-sizing: border-box;
+                user-select: none;
+                cursor: pointer;
+                transition-duration: 150ms;
+                border-radius: .5rem;
+            }
+            .cardItem:hover {
+                background-color: var(--color-darker);
+            }
+            .activeItem {
+                background-color: var(--color-selected);
+            }
+            .cardInfo {
+                display: flex;
+                flex-direction: row;
+                align-items: flex-start;
+                justify-content: flex-start;
+                gap: 1rem;
+                width: 100%;
+                border-bottom: 1px solid var(--color-border);
+                overflow: hidden;
+                margin-bottom: 1rem;
+            }
+            .cardInfoBox {
+                display: none;
+                /*display: flex;*/
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 0.25rem;
+                padding: .5rem 1rem;
+                border-radius: .5rem;
+                width: 100%;
+                border: 1px solid var(--color-border);
+                margin-top: 1rem;
+                width: 100%;
+            }
+            .cardInfoRules {
+                flex-direction: column;
+                align-items: flex-start;
+                padding-bottom: 1rem;
+                border-bottom: 1px solid var(--color-border);
+            }
+            .cardInfoRules > h4 {
+                margin: 0;
+            }
+            .cardRuleFull {
+                border-bottom: 1px solid var(--color-border);
+            }
+            .cardRuleFull h3 {
+                margin-bottom: .5rem;
+            }
+            .cardRuleSet h2 {
+                font-size: 4rem;
+                line-height: 4rem;
+                margin: 1rem 0;
+            }
+            embed {
+                height: 60vh;
+            }
+            object {
+                height: 60vh;
+                margin-top: 2rem;
+            }
+            .contentContainer > div:not(.sectionDescription):not(.sectionContent) {
+                margin-top: 2rem;
+            }
+            .contentcontainer {
+                max-width: 100%;
+                width: 100%;
+                overflow-wrap: break-word;
+            }
+            #ruleClarificationContainer > div, #policyClarificationContainer > div {
+                padding: 1rem;
+                box-sizing: border-box;
+            }
+            #ruleClarificationContainer h2, #ruleClarificationContainer h3, #policyClarificationContainer h2, #policyClarificationContainer h3 {
+                margin: 0;
+            }
+            .pdfLink {
+                font-weight: bold;
+                font-size: 1.5rem;
+            }
+            .pdfMessage {
+                font-weight: bold;
+                font-size: 1.5rem;
+                color: var(--color-error);
+            }
+            #crFallback, #medFallback, #trFallback {
+                max-height: 60vh;
+                overflow: auto;
+                max-width: 100%;
+            }
+            #crFallback > div, #medFallback > div, #trFallback > div {
+                max-width: 100%;
+            }
+            #crFallback > div > img, #medFallback > div > img, #trFallback > div > img {
+                max-width: 100%;
+            }
+            .cardItem > div:first-child {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                justify-content: space-between;
+            }
+            .cardItem > div:first-child img {
+                max-height: 2rem;
+                height: 2rem;
+                width: auto;
+            }
+            .cardInfo, .cardInfoRules {
+                user-select: text;
+                cursor: default;
+            }
+            .moveArrows {
+                display: flex;
+                display: none;
+                flex-direction: row;
+                align-items: center;
+                justify-content: center;
+                width: 100%;
+                gap: 24px;
+            }
+            .moveArrows > div {
+                cursor: pointer;
+                user-select: none;
+                height: 24px;
+                width: 24px;
+                fill: var(--color-text);
+            }
+            .stickyContent h1 svg {
+                display: none;
+            }
+
+            /* Responsive Styling */
+            @media screen and (max-width: 1024px) {
+                div.content {
+                    width: 768px;
+                    margin: auto;
+                }
+            }
+            @media screen and (max-width: 768px) {
+                html {
+                    --font-size: 16px;
+                }
+                div.content {
+                    width: 480px;
+                    margin: auto;
+                }
+                .cardItem > div:first-child {
+                    flex-direction: column;
+                    align-items: flex-start;
+                    justify-content: flex-start;
+                }
+            }
+            @media screen and (max-device-width: 768px) {
+                html {
+                    --font-size: 16px;
+                }
+                .cardItem > div:first-child {
+                    flex-direction: column;
+                    align-items: flex-start;
+                    justify-content: flex-start;
+                }
+            }
+            @media screen and (max-width: 480px) {
+                div.content {
+                    width: 360px;
+                    margin: auto;
+                }
+            }
+            @media screen and (min-width: 1024px) {
+                div.content {
+                    width: 1024px;
+                    margin: auto;
+                }
+            }
+            .mobilecalced {
+                font-size: 30px;
+            }
+            .mobilecalced .cardImage {
+                width: 100%;
+            }
+            .mobilecalced search ::placeholder {
+                font-size: 30px;
+            }
+            .mobilecalced search input {
+                font-size: 30px;
+            }
+            .mobilecalced nav {
+                display: none;
+            }
+            .mobilecalced .stickyContent h1 {
+                display: flex !important;
+                flex-direction: row;
+                align-items: flex-start;
+                justify-content: space-between;
+            }
+            .mobilecalced .stickyContent h1 svg {
+                display: flex !important;
+                height: 64px;
+                padding: 0 24px;
+                fill: var(--color-text);
+                cursor: pointer;
+            }
+            .mobilecalced .moveArrows {
+                justify-content: space-between;
+            }
+            .mobilecalced .moveArrows > div {
+                height: 64px;
+                width: 64px;
+            }
+
+            /* Custom Scrollbar CSS */
+            /* Scrollbar */
+            ::-webkit-scrollbar {
+                width: 10px;
+                height: 10px;
+            }
+
+            /* Scrollbar Track */
+            ::-webkit-scrollbar-track {
+                background-color: transparent;
+                border-radius: 4px;
+            }
+
+            /* Scrollbar Thumb */
+            ::-webkit-scrollbar-thumb {
+                background-color: #ccc;
+                border-radius: 4px;
+                box-shadow: var(--shadow-inset);
+            }
+
+            /* Scrollbar Thumb Hover */
+            ::-webkit-scrollbar-thumb:hover {
+                background-color: #aaa;
+            }
+
+            /* Scrollbar Button */
+            ::-webkit-scrollbar-button {
+                display: none;
+            }
+        </style>
+        <script>
+            var cardData = window.projectNamespace.cardData;
+            var pdfImages = {
+                cr: window.projectNamespace.cr,
+                med: window.projectNamespace.med,
+                tr: window.projectNamespace.tr
+            };
+            var aspectImages = {
+                'Vigilance': '<img src="https://cdn.starwarsunlimited.com/icon_vigilance_aebda7026f.png" />',
+                'Command': '<img src="https://cdn.starwarsunlimited.com/icon_command_df837f32c6.png" />',
+                'Aggression': '<img src="https://cdn.starwarsunlimited.com/icon_aggression_24cc746635.png" />',
+                'Cunning': '<img src="https://cdn.starwarsunlimited.com/icon_cunning_931f93ee4c.png" />',
+                'Villainy': '<img src="https://cdn.starwarsunlimited.com/icon_villainy_eb77e7874b.png" />',
+                'Heroism': '<img src="https://cdn.starwarsunlimited.com/icon_heroism_99d152cb2d.png" />'
+            }
+
+            function checkSize() {
+                var ratio = window.devicePixelRatio;
+                var width = window.innerWidth;
+                var actualwidth = width / ratio;
+
+                //console.log(ratio);
+                //console.log(width);
+                //console.log(actualwidth);
+                //console.log(actualwidth <= 1024 && ratio > 1);
+
+                if (actualwidth <= 1024 && ratio > 1) {
+                    $('html').addClass('mobilecalced');
+                    $('nav').hide();
+                } else {
+                    $('html').removeClass('mobilecalced');
+                    $('nav').css('display', 'flex').show();
+                }
+            }
+
+            function updateSearch() {
+                const searchText = $('#searchInput').val().toLowerCase();
+
+                // Start looping through the cards and show / hide containers that don't contain the string.
+                $('.cardItem').hide();
+                $('.cardInfo').hide();
+                $('.cardInfoRules').hide();
+                $('.activeItem').removeClass('activeItem');
+                $('.cardItem').each(function () {
+                    if ($(this).html().toLowerCase().includes(searchText)) {
+                        $(this).show();
+                    }
+                });
+
+                $('.cardRuleSet').hide();
+                $('.cardRuleFull').hide();
+                $('.cardRule').hide();
+
+                $('.cardRule').each(function () {
+                    if ($(this).html().toLowerCase().includes(searchText) || $(this).closest('.cardRuleFull').find('h3').text().toLowerCase().includes(searchText) || $(this).closest('.cardRuleSet').find('h2').text().toLowerCase().includes(searchText)) {
+                        $(this).show();
+                        $(this).closest('.cardRuleFull').show();
+                        $(this).closest('.cardRuleSet').show();
+                    }
+                });
+            }
+
+            function createCardList() {
+                if (Object.keys(cardData).length > 0) {
+                    const sortedCardList = Object.keys(cardData).sort().reduce((acc, key) => {
+                        acc[key] = cardData[key];
+                        return acc;
+                    }, {});
+
+                    var cardListHTML = '';
+                    Object.entries(sortedCardList).forEach(([cardKey, cardInfo]) => {
+                        cardListHTML += '<div class="cardItem" onclick="toggleShow(event);"><div><span>' + cardKey + (cardInfo.sets.length > 0 || cardInfo.type != '' ? ' [' : '') + (cardInfo.type != '' ? cardInfo.type : '') + (cardInfo.sets.length > 0 ? (cardInfo.type != '' ? ' - ' : '') + cardInfo.sets.join(', ') : '') + (cardInfo.sets.length > 0 || cardInfo.type != '' ? ']' : '') + '</span><div data-traits="' + cardInfo.traits + '" data-aspcts="' + (cardInfo.aspects.length > 0 ? cardInfo.aspects.join(', ') : '') + '">' + (cardInfo.aspects.length > 0 ? cardInfo.aspects.map(x => aspectImages[x]).join('') : '') + '</div></div>';
+                            
+                        if (cardInfo.versions.length > 1) {
+                            cardListHTML += '<div class="moveArrows"><div class="movePrev" onclick="moveImages(\'previous\', $(\'.cardInfo.' + cardKey.replaceAll(' ', '_').replaceAll("'", "").replace(/[^\w\s]/gi, "") + '\'));"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M177.5 414c-8.8 3.8-19 2-26-4.6l-144-136C2.7 268.9 0 262.6 0 256s2.7-12.9 7.5-17.4l144-136c7-6.6 17.2-8.4 26-4.6s14.5 12.5 14.5 22l0 72 288 0c17.7 0 32 14.3 32 32l0 64c0 17.7-14.3 32-32 32l-288 0 0 72c0 9.6-5.7 18.2-14.5 22z"/></svg></div><div class="moveNext" onclick="moveImages(\'next\', $(\'.cardInfo.' + cardKey.replaceAll(' ', '_').replaceAll("'", "").replace(/[^\w\s]/gi, "") + '\'));"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M334.5 414c8.8 3.8 19 2 26-4.6l144-136c4.8-4.5 7.5-10.8 7.5-17.4s-2.7-12.9-7.5-17.4l-144-136c-7-6.6-17.2-8.4-26-4.6s-14.5 12.5-14.5 22l0 72L32 192c-17.7 0-32 14.3-32 32l0 64c0 17.7 14.3 32 32 32l288 0 0 72c0 9.6 5.7 18.2 14.5 22z"/></svg></div></div>';
+                        }
+                        
+                        cardListHTML += '<div class="cardInfo ' + cardKey.replaceAll(' ', '_').replaceAll("'", "").replace(/[^\w\s]/gi, "") + '" style="display: none;">';
+
+                        for (let i = 0; i < cardInfo.versions.length; i++) {
+                            cardListHTML += '<div class="cardInfoBox">' +
+                                    (cardInfo.versions[i].variant_name !== '' ? '<div><strong>' + cardInfo.versions[i].variant_name + '</strong></div>' : '') +
+                                    (cardInfo.versions[i].front_image !== '' ? '<img class="cardImage frontImage" src="' + cardInfo.versions[i].front_image + '" alt="' + cardKey + ' - Front" />' : '') +
+                                    (cardInfo.versions[i].back_image !== '' ? '<img class="cardImage backImage" src="' + cardInfo.versions[i].back_image + '" alt="' + cardKey + ' - Back" />' : '') +
+                                    (cardInfo.versions[i].text !== '' ? '<div><strong>Card Text:</strong> ' + cardInfo.versions[i].text.replaceAll("'", "\'") + '</div>' : '') +
+                                    (cardInfo.versions[i].deploy_box !== '' ? '<div><strong>Deploy Box Text:</strong> ' + cardInfo.versions[i].deploy_box.replaceAll("'", "\'") + '</div>' : '') +
+                                    (cardInfo.versions[i].epic_action !== '' ? '<div><strong>Epic Action Text:</strong> ' + cardInfo.versions[i].epic_action.replaceAll("'", "\'") + '</div>' : '') +
+                                '</div>';
+                        }
+                        
+                        cardListHTML += '</div>';
+
+                        if (cardInfo.rules.length > 0) {
+                            cardListHTML += '<div class="cardInfoRules ' + cardKey.replaceAll(' ', '_').replaceAll("'", "").replace(/[^\w\s]/gi, "") + '" style="display: none;">';
+                                cardListHTML += '<h4>Rules:</h4>';
+                            for (let i = 0; i < cardInfo.rules.length; i++) {
+                                cardListHTML += '<div class="cardInfoRulesBox">' +
+                                        '<div><strong>' + cardInfo.rules[i][0] + ':</strong> ' + cardInfo.rules[i][1] + '</div>' +
+                                    '</div>';
+                            }
+                            cardListHTML += '</div>';
+                        }
+                        cardListHTML += '</div>';
+                    });
+
+                    $('#cardContent').html(cardListHTML);
+                }
+            }
+
+            function createRulesList() {
+                if (Object.keys(cardData).length > 0) {
+                    var allRules = [];
+
+                    Object.entries(cardData).forEach(([cardKey, cardInfo]) => {
+                        if (cardInfo.rules.length > 0) {
+                            var recentSetName = '';
+                            var recentSetNumber = 0;
+                            for (let i = 0; i < cardInfo.versions.length; i++) {
+                                if (cardInfo.versions[i].set_number > recentSetNumber) {
+                                    recentSetName = cardInfo.versions[i].set;
+                                    recentSetNumber = cardInfo.versions[i].set_number;
+                                }
+                            }
+                            for (let i = 0; i < cardInfo.rules.length; i++) {
+                                allRules.push([recentSetName, cardKey, cardInfo.rules[i][0], cardInfo.rules[i][1], recentSetNumber]);
+                            }
+                        }
+                    });
+
+                    allRules = allRules.sort(function(a, b) {
+                        if (a[4] != b[4]) {
+                            return b[4] - a[4];
+                        } else {
+                            if (a[1] != b[1]) {
+                                return a[1].localeCompare(b[1]);
+                            } else {
+                                if (a[2] != b[2]) {
+                                    return new Date(b[2]) - new Date(a[2]);
+                                } else {
+                                    if (a[3] != b[3]) {
+                                        return a[3].localeCompare(b[3]);
+                                    } else {
+                                        return 0;
+                                    }
+                                }
+                            }
+                        }
+                    });
+
+                    var ruleHTML = '';
+                    var previousSet = '';
+                    var previousCard = '';
+                    for (let i = 0; i < allRules.length; i++) {
+                        if (allRules[i][0] != previousSet && previousSet != '') {
+                            ruleHTML += '</div>';
+                        }
+                        if (allRules[i][1] != previousCard && previousCard != '') {
+                            ruleHTML += '</div>';
+                        }
+
+                        if (allRules[i][0] != previousSet) {
+                            ruleHTML += '<div class="cardRuleSet"><h2>' + allRules[i][0] + '</h2>';
+                            previousSet = allRules[i][0];
+                        }
+                        if (allRules[i][1] != previousCard) {
+                            ruleHTML += '<div class="cardRuleFull"><h3>' + allRules[i][1] + '</h3>';
+                            previousCard = allRules[i][1];
+                        }
+                        ruleHTML += '<div class="cardRule"><strong>' + allRules[i][2] + ':</strong> ' + allRules[i][3] + '</div>';
+                    }
+                    ruleHTML += '</div></div>';
+
+                    $('#ruleContent').html(ruleHTML);
+                }
+            }
+            
+            function fixMarkdown(markdown) {
+                const mdSplit = markdown.split('\n');
+
+                var markdownLines = [];
+                var inbullets = false;
+                for (let i = 0; i < mdSplit.length; i++) {
+                    var fixedMd = mdSplit[i].trim();
+                    if (fixedMd === '') {
+                        markdownLines.push('<br />');
+                        continue;
+                    }
+                    if (fixedMd.substring(0, 2) === '# ') {
+                        fixedMd = '<h2>' + fixedMd.substring(2) + '</h2>';
+                    }
+                    if (fixedMd.substring(0, 3) === '## ') {
+                        fixedMd = '<h3>' + fixedMd.substring(3) + '</h3>';
+                    }
+                    if (fixedMd.substring(0, 2) === '* ') {
+                        if (!inbullets) {
+                            inbullets = true;
+                            fixedMd = '<ul><li>' + fixedMd.substring(2) + '</li>';
+                        } else {
+                            fixedMd = '<li>' + fixedMd.substring(2) + '</li>';
+                        }
+                    } else if (inbullets) {
+                        inbullets = false;
+                        fixedMd = '</ul>' + fixedMd;
+                    }
+
+                    fixedMd = fixedMd.replace(/\[(.*?)\]\((.*?)\)/g, (match, p1, p2) => {
+                        if (p1 === 'Screenshot') {
+                            return `<img style="max-width: 100%;" src="${p2}" />`;
+                        }
+                        return `<!--<a href="${p2}">-->${p1}<!--</a>-->`;
+                    });
+
+                    // Part to handle adding the bolds
+                    fixedMd = fixedMd.replace(/(.*?)\*\*(.*?)\*\*/g, "$1<b>$2</b>");
+                    // Part to handle adding what I think is italics
+                    fixedMd = fixedMd.replace(/(.*?)\*(.*?)\*/g, "$1<i>$2</i>");
+                    markdownLines.push(fixedMd);
+                }
+
+                return markdownLines.join('');
+            }
+
+            function toggleShow(target) {
+                var clicked = $(target.target);
+                var parent = clicked.closest('.cardItem')[0];
+
+                var doNotToggle = false;
+                if (clicked.closest('.moveArrows').length > 0 || clicked.hasClass('cardInfo') || clicked.hasClass('cardInfoRules') || clicked.closest('.cardInfo').length > 0 || clicked.closest('.cardInfoRules').length > 0) {
+                    doNotToggle = true;
+                }
+
+                if (!doNotToggle) {
+                    if ($(parent).hasClass('activeItem')) {
+                        $('.cardInfo').hide();
+                        $('.cardInfoBox').hide();
+                        $('.cardInfoRules').hide();
+                        $('.moveArrows').hide();
+                        $('.cardItem').removeClass('activeItem');
+                    } else {
+                        $('.cardItem').removeClass('activeItem');
+                        $(parent).addClass('activeItem');
+                        $('.cardInfo').hide();
+                        $('.cardInfoBox').hide();
+                        $('.cardInfoRules').hide();
+                        $('.moveArrows').hide();
+                        $(parent).children('.cardInfo').css('display', 'flex').show();
+                        $(parent).children('.moveArrows').css('display', 'flex').show();
+                        $(parent).children('.cardInfoRules').css('display', 'flex').show();
+                        $(parent).children('.cardInfo').children('.cardInfoBox:first-child()').css('display', 'flex').show();
+                    }
+                }
+            }
+
+            function moveImages(direction, cardInfo) {
+                const cardInfoBoxes = cardInfo.children('.cardInfoBox');
+                const currentInfoBox = cardInfo.children('.cardInfoBox:visible')[0];
+                const currentIndex = Array.prototype.indexOf.call(cardInfoBoxes, currentInfoBox);
+                var nextIndex = -1;
+                var nextInfoBox;
+
+                if (direction === 'next') {
+                    nextIndex = currentIndex + 1;
+
+                    if (nextIndex > cardInfoBoxes.length - 1) {
+                        nextInfoBox = cardInfoBoxes[0];
+                    } else {
+                        nextInfoBox = cardInfoBoxes[nextIndex];
+                    }
+
+                    $(currentInfoBox).hide();
+                    $(nextInfoBox).css('display', 'flex').show();
+                } else if (direction === 'previous') {
+                    nextIndex = currentIndex - 1;
+
+                    if (nextIndex < 0) {
+                        nextInfoBox = cardInfoBoxes[cardInfoBoxes.length - 1];
+                    } else {
+                        nextInfoBox = cardInfoBoxes[nextIndex];
+                    }
+
+                    $(currentInfoBox).hide();
+                    $(nextInfoBox).css('display', 'flex').show();
+                }
+            }
+
+            function toggleMenu() {
+                if ($('nav').css('display') === 'none') {
+                    $('nav').css('display', 'flex').show();
+                } else {
+                    $('nav').hide();
+                }
+            }
+
+            // Uses https://www.adobe.com/acrobat/online/pdf-to-jpg.html to convert a PDF to a png per page.
+            docLoaded = function(docType) {
+                const pdfDoc = $('#' + docType + 'Container > object').contents();
+
+                var hasDoc = false;
+                for (let i = 0; i < pdfDoc.length; i++) {
+                    if ('nodeName' in pdfDoc[0] && pdfDoc[0].nodeName === '#document') {
+                        hasDoc = true;
+                        break;
+                    }
+                }
+
+                if (!hasDoc && $('#' + docType + 'Container').is(':visible')) {
+                    $('#' + docType + 'Container > object').hide();
+                    $('#' + docType + 'Container > .pdfMessage').show();
+                    $('#' + docType + 'Fallback').show();
+                } else {
+                    $('#' + docType + 'Container > object').show();
+                    $('#' + docType + 'Container > .pdfMessage').hide();
+                    $('#' + docType + 'Fallback').hide();
+                }
+            }
+
+            main = function () {
+                checkSize();
+
+                createCardList();
+                createRulesList();
+
+                const rulesGistID = "256a534a98fc1d45f2595503f7d54953";
+                const apiUrl = `https://api.github.com/gists/${rulesGistID}`;
+                fetch(apiUrl) 
+                .then(response => response.json())
+                .then(result => {
+                    if (result.files["SWU_Resources.md"]["content"] !== undefined && result.files["SWU_Resources.md"]["content"] !== null) {
+                        const markdownContent = result.files["SWU_Resources.md"]["content"];
+
+                        const fixedMd = fixMarkdown(markdownContent);
+                        $('#ruleClarificationContainer > div').html(fixedMd);
+                    }
+                });
+
+                for (const place in pdfImages) {
+                    if (pdfImages[place].length > 0) {
+                        
+                        var fallbackHTML = '';
+
+                        var sortedFiles = pdfImages[place].sort(function (a, b) {
+                            return parseInt(a.split('_')[a.split('_').length - 1]) - parseInt(b.split('_')[b.split('_').length - 1]);
+                        });
+                        for (let i = 0; i < sortedFiles.length; i++) {
+                            fallbackHTML += '<img src="rules_documents/' + place.toUpperCase() + '/' + sortedFiles[i] + '" />';
+                        }
+
+                        if (fallbackHTML != '') {
+                            $('#' + place + 'Fallback > div').html(fallbackHTML);
+                        }
+                    }
+                }
+            }
+
+            main();
+            $(window).resize(checkSize);
+            /*
+            $(document).ready(function() {
+                $('img[loading="lazy"]').attr('loading', 'auto');
+            });
+            */
+        </script>
+    </body>
+</html>
