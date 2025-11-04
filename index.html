@@ -788,12 +788,12 @@ Judges are not expected to recognize all advancing interconnected technology. Ho
                 tr: window.projectNamespace.tr
             };
             var aspectImages = {
-                'Vigilance': '<img src="https://cdn.starwarsunlimited.com/icon_vigilance_aebda7026f.png" />',
-                'Command': '<img src="https://cdn.starwarsunlimited.com/icon_command_df837f32c6.png" />',
-                'Aggression': '<img src="https://cdn.starwarsunlimited.com/icon_aggression_24cc746635.png" />',
-                'Cunning': '<img src="https://cdn.starwarsunlimited.com/icon_cunning_931f93ee4c.png" />',
-                'Villainy': '<img src="https://cdn.starwarsunlimited.com/icon_villainy_eb77e7874b.png" />',
-                'Heroism': '<img src="https://cdn.starwarsunlimited.com/icon_heroism_99d152cb2d.png" />'
+                'Vigilance': '<img loading="lazy" src="https://cdn.starwarsunlimited.com/icon_vigilance_aebda7026f.png" />',
+                'Command': '<img loading="lazy" src="https://cdn.starwarsunlimited.com/icon_command_df837f32c6.png" />',
+                'Aggression': '<img loading="lazy" src="https://cdn.starwarsunlimited.com/icon_aggression_24cc746635.png" />',
+                'Cunning': '<img loading="lazy" src="https://cdn.starwarsunlimited.com/icon_cunning_931f93ee4c.png" />',
+                'Villainy': '<img loading="lazy" src="https://cdn.starwarsunlimited.com/icon_villainy_eb77e7874b.png" />',
+                'Heroism': '<img loading="lazy" src="https://cdn.starwarsunlimited.com/icon_heroism_99d152cb2d.png" />'
             }
 
             function checkSize() {
@@ -862,8 +862,8 @@ Judges are not expected to recognize all advancing interconnected technology. Ho
                         for (let i = 0; i < cardInfo.versions.length; i++) {
                             cardListHTML += '<div class="cardInfoBox">' +
                                     (cardInfo.versions[i].variant_name !== '' ? '<div><strong>' + cardInfo.versions[i].variant_name + '</strong></div>' : '') +
-                                    (cardInfo.versions[i].front_image !== '' ? '<img class="cardImage frontImage" src="' + cardInfo.versions[i].front_image + '" alt="' + cardKey + ' - Front" />' : '') +
-                                    (cardInfo.versions[i].back_image !== '' ? '<img class="cardImage backImage" src="' + cardInfo.versions[i].back_image + '" alt="' + cardKey + ' - Back" />' : '') +
+                                    (cardInfo.versions[i].front_image !== '' ? '<img loading="lazy" class="cardImage frontImage" src="' + cardInfo.versions[i].front_image + '" alt="' + cardKey + ' - Front" />' : '') +
+                                    (cardInfo.versions[i].back_image !== '' ? '<img loading="lazy" class="cardImage backImage" src="' + cardInfo.versions[i].back_image + '" alt="' + cardKey + ' - Back" />' : '') +
                                     (cardInfo.versions[i].text !== '' ? '<div><strong>Card Text:</strong> ' + cardInfo.versions[i].text.replaceAll("'", "\'") + '</div>' : '') +
                                     (cardInfo.versions[i].deploy_box !== '' ? '<div><strong>Deploy Box Text:</strong> ' + cardInfo.versions[i].deploy_box.replaceAll("'", "\'") + '</div>' : '') +
                                     (cardInfo.versions[i].epic_action !== '' ? '<div><strong>Epic Action Text:</strong> ' + cardInfo.versions[i].epic_action.replaceAll("'", "\'") + '</div>' : '') +
@@ -987,7 +987,7 @@ Judges are not expected to recognize all advancing interconnected technology. Ho
 
                     fixedMd = fixedMd.replace(/\[(.*?)\]\((.*?)\)/g, (match, p1, p2) => {
                         if (p1 === 'Screenshot') {
-                            return `<img style="max-width: 100%;" src="${p2}" />`;
+                            return `<img loading="lazy" style="max-width: 100%;" src="${p2}" />`;
                         }
                         return `<!--<a href="${p2}">-->${p1}<!--</a>-->`;
                     });
