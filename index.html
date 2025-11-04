@@ -1124,7 +1124,7 @@ Judges are not expected to recognize all advancing interconnected technology. Ho
                             return parseInt(a.split('_')[a.split('_').length - 1]) - parseInt(b.split('_')[b.split('_').length - 1]);
                         });
                         for (let i = 0; i < sortedFiles.length; i++) {
-                            fallbackHTML += '<img src="rules_documents/' + place.toUpperCase() + '/' + sortedFiles[i] + '" />';
+                            fallbackHTML += '<img loading="lazy" src="rules_documents/' + place.toUpperCase() + '/' + sortedFiles[i] + '" />';
                         }
 
                         if (fallbackHTML != '') {
@@ -1136,11 +1136,11 @@ Judges are not expected to recognize all advancing interconnected technology. Ho
 
             main();
             $(window).resize(checkSize);
-            /*
+            
             $(document).ready(function() {
                 $('img[loading="lazy"]').attr('loading', 'auto');
             });
-            */
+            
         </script>
     </body>
 </html>
