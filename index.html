@@ -862,8 +862,8 @@ Judges are not expected to recognize all advancing interconnected technology. Ho
                         for (let i = 0; i < cardInfo.versions.length; i++) {
                             cardListHTML += '<div class="cardInfoBox">' +
                                     (cardInfo.versions[i].variant_name !== '' ? '<div><strong>' + cardInfo.versions[i].variant_name + '</strong></div>' : '') +
-                                    (cardInfo.versions[i].front_image !== '' ? '<img loading="lazy" class="cardImage frontImage" src="' + cardInfo.versions[i].front_image + '" alt="' + cardKey + ' - Front" />' : '') +
-                                    (cardInfo.versions[i].back_image !== '' ? '<img loading="lazy" class="cardImage backImage" src="' + cardInfo.versions[i].back_image + '" alt="' + cardKey + ' - Back" />' : '') +
+                                    (cardInfo.versions[i].front_image !== '' ? '<img class="cardImage frontImage" data-src="' + cardInfo.versions[i].front_image + '" alt="' + cardKey + ' - Front" />' : '') +
+                                    (cardInfo.versions[i].back_image !== '' ? '<img class="cardImage backImage" data-src="' + cardInfo.versions[i].back_image + '" alt="' + cardKey + ' - Back" />' : '') +
                                     (cardInfo.versions[i].text !== '' ? '<div><strong>Card Text:</strong> ' + cardInfo.versions[i].text.replaceAll("'", "\'") + '</div>' : '') +
                                     (cardInfo.versions[i].deploy_box !== '' ? '<div><strong>Deploy Box Text:</strong> ' + cardInfo.versions[i].deploy_box.replaceAll("'", "\'") + '</div>' : '') +
                                     (cardInfo.versions[i].epic_action !== '' ? '<div><strong>Epic Action Text:</strong> ' + cardInfo.versions[i].epic_action.replaceAll("'", "\'") + '</div>' : '') +
@@ -1029,6 +1029,14 @@ Judges are not expected to recognize all advancing interconnected technology. Ho
                         $(parent).children('.moveArrows').css('display', 'flex').show();
                         $(parent).children('.cardInfoRules').css('display', 'flex').show();
                         $(parent).children('.cardInfo').children('.cardInfoBox:first-child()').css('display', 'flex').show();
+
+                        // Lazy load images manually
+                        $(parent).children('img').forEach(function() {
+                            const imgElement = $(this);
+                            if (imgElement.attr('data-src') != undefined) {
+                                imgElement.attr('src', imgElement.attr('data-src'));
+                            }
+                        });
                     }
                 }
             }
@@ -1124,7 +1132,7 @@ Judges are not expected to recognize all advancing interconnected technology. Ho
                             return parseInt(a.split('_')[a.split('_').length - 1]) - parseInt(b.split('_')[b.split('_').length - 1]);
                         });
                         for (let i = 0; i < sortedFiles.length; i++) {
-                            fallbackHTML += '<img loading="lazy" src="rules_documents/' + place.toUpperCase() + '/' + sortedFiles[i] + '" />';
+                            fallbackHTML += '<img src="rules_documents/' + place.toUpperCase() + '/' + sortedFiles[i] + '" />';
                         }
 
                         if (fallbackHTML != '') {
