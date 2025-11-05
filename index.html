@@ -1031,10 +1031,11 @@ Judges are not expected to recognize all advancing interconnected technology. Ho
                         $(parent).children('.cardInfo').children('.cardInfoBox:first-child()').css('display', 'flex').show();
 
                         // Lazy load images manually
-                        $(parent).children('img').forEach(function() {
+                        $(parent).children('.cardInfo').children('.cardInfoBox').children('img[data-src]').each(function() {
                             const imgElement = $(this);
-                            if (imgElement.attr('data-src') != undefined) {
+                            if (imgElement.attr('data-src') !== undefined) {
                                 imgElement.attr('src', imgElement.attr('data-src'));
+                                imgElement.removeAttr('data-src');
                             }
                         });
                     }
