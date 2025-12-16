@@ -14,7 +14,7 @@ def images_to_array(folders):
         txt_file.write(folderstring)   
 
 if __name__ == "__main__":
-    doc_folders = ['CR', 'MED', 'TR']
+    doc_folders = ['CR', 'CEG']
 
     images_to_array(doc_folders)
 

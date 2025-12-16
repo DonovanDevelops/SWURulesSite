@@ -4,8 +4,7 @@ There have been several requests for a website that gathers all data from almost
 - [Card Information and images from the official Star Wars: Unlimited site](https://starwarsunlimited.com/cards)
 - [Additional Rulings for cards from the official Star Wars: Unlimited site](https://starwarsunlimited.com/cards)
 - [Comprehensive Rules (CR)](https://nexus.cascadegames.com/resources/)
-- [Master Event Document (MED)](https://nexus.cascadegames.com/resources/)
-- [Tournament Regulations (TR)](https://nexus.cascadegames.com/resources/)
+- [Comprehensive Event Guide (CEG)](https://nexus.cascadegames.com/resources/)
 - [Rules Clarifications from Nexus](https://nexus.cascadegames.com/resources/Rules_Clarifications/)
 - [Policy Clarifications from Nexus](https://nexus.cascadegames.com/resources/Policy_Clarifications/)
 - Card Legality
@@ -64,13 +63,10 @@ Here is a brief walkthrough of the different tabs available in the tool:
 	- All of the text on this page is searchable through the search bar on the top of the page, so you can search for the name of a card, an interaction, or a date to see all of the related updates.
 - **CR**
 	- Simply put, this page hosts the current version of the Comprehensive Rules document. It also includes a direct link to the PDF for download separately.
-	- *Note: If you see a message in red text above the document, then it means that you are viewing images of the PDF and not the PDF itself. Usually that indicates that your device or browser does not have a PDF viewer. All that means is that while you wont be able to search the text on the document or use it's embedded navigation, you'll be able to view the whole document as images. This will also be true for the MED and TR.*
-- **MED**
-	- Simply put, this page hosts the current version of the Master Event Document. It also includes a direct link to the PDF for download separately.
-	- *Note: If you see a message in red text above the document, then it means that you are viewing images of the PDF and not the PDF itself. Usually that indicates that your device or browser does not have a PDF viewer. All that means is that while you wont be able to search the text on the document or use it's embedded navigation, you'll be able to view the whole document as images. This will also be true for the CR and TR.*
-- **TR**
-	- Simply put, this page hosts the current version of the Tournament Regulations document. It also includes a direct link to the PDF for download separately.
-	- *Note: If you see a message in red text above the document, then it means that you are viewing images of the PDF and not the PDF itself. Usually that indicates that your device or browser does not have a PDF viewer. All that means is that while you wont be able to search the text on the document or use it's embedded navigation, you'll be able to view the whole document as images. This will also be true for the CR and MED.*
+	- *Note: If you see a message in red text above the document, then it means that you are viewing images of the PDF and not the PDF itself. Usually that indicates that your device or browser does not have a PDF viewer. All that means is that while you wont be able to search the text on the document or use it's embedded navigation, you'll be able to view the whole document as images. This will also be true for the CEG.*
+- **CEG**
+	- Simply put, this page hosts the current version of the Comprehensive Event Guide. It also includes a direct link to the PDF for download separately.
+	- *Note: If you see a message in red text above the document, then it means that you are viewing images of the PDF and not the PDF itself. Usually that indicates that your device or browser does not have a PDF viewer. All that means is that while you wont be able to search the text on the document or use it's embedded navigation, you'll be able to view the whole document as images. This will also be true for the CR.*
 - **Rules Clarifications**
 	- This page is taken directly from the [rules clarifications page on Nexus](https://nexus.cascadegames.com/resources/Rules_Clarifications/) that includes several of the rules clarifications that we've gotten on social media and other sources.
 - **Policy Clarifications**
