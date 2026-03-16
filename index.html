@@ -9,7 +9,7 @@
         <script src="cards_data.js"></script>
         <script src="pdf_images.js"></script>
         <script type="text/javascript" src="https://acrobatservices.adobe.com/view-sdk/viewer.js"></script>
-        <meta http-equiv="Content-Disposition" content="attachment; filename=rules_documents/Star_Wars_Unlimited_Comp_Rules_6_0_d3d16e8da4.pdf">
+        <meta http-equiv="Content-Disposition" content="attachment; filename=rules_documents/SWH_Comp-Rules_v7.0.pdf">
         <meta http-equiv="Content-Disposition" content="attachment; filename=rules_documents/Star_Wars_Unlimited_Comprehensive_Event_Guide_a34d99b91d.pdf">
     </head>
     <body>
@@ -18,7 +18,7 @@
             <nav>
                 <div id="cardDataTab" class="activeTab" onclick="$('#searchInput').prop('disabled', false);$('.contentContainer').hide();$('#cardDataContainer').show();$('.activeTab').removeClass('activeTab');$(this).addClass('activeTab');">Cards</div>
                 <div id="ruleDataTab" onclick="$('#searchInput').prop('disabled', false);$('.contentContainer').hide();$('.activeTab').removeClass('activeTab');$('#ruleDataContainer').show(); $(this).addClass('activeTab');">Additional Rulings</div>
-                <div id="crDataTab" onclick="$('#searchInput').prop('disabled', true);$('.contentContainer').hide();$('#crContainer').show();$('.activeTab').removeClass('activeTab');$(this).addClass('activeTab');docLoaded('cr')">CR v6.0.0</div>
+                <div id="crDataTab" onclick="$('#searchInput').prop('disabled', true);$('.contentContainer').hide();$('#crContainer').show();$('.activeTab').removeClass('activeTab');$(this).addClass('activeTab');docLoaded('cr')">CR v7.0</div>
                 <div id="cegDataTab" onclick="$('#searchInput').prop('disabled', true);$('.contentContainer').hide();$('#cegContainer').show();$('.activeTab').removeClass('activeTab');$(this).addClass('activeTab');docLoaded('ceg');">CEG</div>
                 <div id="clarificationDataTab" onclick="$('#searchInput').prop('disabled', true);$('.contentContainer').hide();$('#ruleClarificationContainer').show();$('.activeTab').removeClass('activeTab');$(this).addClass('activeTab');">Rules Clarifications</div>
                 <div id="policyDataTab" onclick="$('#searchInput').prop('disabled', true);$('.contentContainer').hide();$('#policyClarificationContainer').show();$('.activeTab').removeClass('activeTab');$(this).addClass('activeTab');">Policy Clarifications</div>
@@ -31,16 +31,16 @@
         </div>
         <div class="content">
             <div class="contentContainer" id="cardDataContainer">
-                <div class="sectionDescription">This is a list of all cards alphabetically. Select a card to view its images, text, and known rulings. (Updated 02/18/2026)</div>
+                <div class="sectionDescription">This is a list of all cards alphabetically. Select a card to view its images, text, and known rulings. (Updated 03/16/2026)</div>
                 <div class="sectionContent" id="cardContent"></div> 
             </div>
             <div class="contentContainer" id="ruleDataContainer" style="display: none;">
-                <div class="sectionDescription">This is a list of all known additional rulings from the SWU website. Rules are grouped by set, then alphabetically by card name, then by date. (Updated 02/18/2026)</div>
+                <div class="sectionDescription">This is a list of all known additional rulings from the SWU website. Rules are grouped by set, then alphabetically by card name, then by date. (Updated 03/16/2026)</div>
                 <div class="sectionContent" id="ruleContent"></div> 
             </div>
             <div class="contentContainer" id="crContainer" style="display:none;">
-                <div><a class="pdfLink" target="_blank" href="rules_documents/Star_Wars_Unlimited_Comp_Rules_6_0_d3d16e8da4.pdf">Direct Link to PDF</a></div>
-                <object onload="docLoaded('cr');" onerror="$(this).hide();$('#crFallback').show();" data="rules_documents/Star_Wars_Unlimited_Comp_Rules_6_0_d3d16e8da4.pdf" type="application/pdf" width="100%" height="100%">
+                <div><a class="pdfLink" target="_blank" href="rules_documents/SWH_Comp-Rules_v7.0.pdf">Direct Link to PDF</a></div>
+                <object onload="docLoaded('cr');" onerror="$(this).hide();$('#crFallback').show();" data="rules_documents/SWH_Comp-Rules_v7.0.pdf" type="application/pdf" width="100%" height="100%">
                     <param name="download" value="true">
                 </object>
                 <div class="pdfMessage">If you are only able to see an image of the first page of the PDF or you see this message above the PDF, your browser does not support the PDF viewer. Please click the link above to view and download the PDF from there so it is available to you offline.</div>
@@ -332,6 +332,9 @@
             }
             #ruleClarificationContainer h2, #ruleClarificationContainer h3, #policyClarificationContainer h2, #policyClarificationContainer h3 {
                 margin: 0;
+            }
+            #ruleClarificationContainer h3, #policyClarificationContainer h3 {
+                color: #35a1ff;
             }
             .pdfLink {
                 font-weight: bold;
@@ -683,11 +686,17 @@
                         markdownLines.push('<br />');
                         continue;
                     }
-                    if (fixedMd.substring(0, 2) === '# ') {
-                        fixedMd = '<h2>' + fixedMd.substring(2) + '</h2>';
+                    if (fixedMd.substring(0, 4) === '### ') {
+                        fixedMd = '<h3>' + fixedMd.substring(4) + '</h3>';
                     }
                     if (fixedMd.substring(0, 3) === '## ') {
                         fixedMd = '<h3>' + fixedMd.substring(3) + '</h3>';
+                    }
+                    if (fixedMd.substring(0, 2) === '# ') {
+                        fixedMd = '<h2>' + fixedMd.substring(2) + '</h2>';
+                    }
+                    if (fixedMd[0] === '`' && fixedMd[fixedMd.length - 1] === '`') {
+                        fixedMd = '<span style="color: #ff9e9e;">' + fixedMd.substring(1, fixedMd.length - 1) + '</span>';
                     }
                     if (fixedMd.substring(0, 2) === '* ') {
                         if (!inbullets) {
