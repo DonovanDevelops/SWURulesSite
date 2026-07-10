@@ -9,8 +9,8 @@
         <script src="cards_data.js"></script>
         <script src="pdf_images.js"></script>
         <script type="text/javascript" src="https://acrobatservices.adobe.com/view-sdk/viewer.js"></script>
-        <meta http-equiv="Content-Disposition" content="attachment; filename=rules_documents/SWH_Comp-Rules_v7.0.pdf">
-        <meta http-equiv="Content-Disposition" content="attachment; filename=rules_documents/Star_Wars_Unlimited_Comprehensive_Event_Guide_a34d99b91d.pdf">
+        <meta http-equiv="Content-Disposition" content="attachment; filename=rules_documents/SWH_Comp_Rules_v8_0_e26603c6e1.pdf">
+        <meta http-equiv="Content-Disposition" content="attachment; filename=rules_documents/Comprehensive_Event_Guide_6_26_26_0110535972.pdf">
     </head>
     <body>
         <div class="stickyContent">
@@ -18,7 +18,7 @@
             <nav>
                 <div id="cardDataTab" class="activeTab" onclick="$('#searchInput').prop('disabled', false);$('.contentContainer').hide();$('#cardDataContainer').show();$('.activeTab').removeClass('activeTab');$(this).addClass('activeTab');">Cards</div>
                 <div id="ruleDataTab" onclick="$('#searchInput').prop('disabled', false);$('.contentContainer').hide();$('.activeTab').removeClass('activeTab');$('#ruleDataContainer').show(); $(this).addClass('activeTab');">Additional Rulings</div>
-                <div id="crDataTab" onclick="$('#searchInput').prop('disabled', true);$('.contentContainer').hide();$('#crContainer').show();$('.activeTab').removeClass('activeTab');$(this).addClass('activeTab');docLoaded('cr')">CR v7.0</div>
+                <div id="crDataTab" onclick="$('#searchInput').prop('disabled', true);$('.contentContainer').hide();$('#crContainer').show();$('.activeTab').removeClass('activeTab');$(this).addClass('activeTab');docLoaded('cr')">CR v8.0</div>
                 <div id="cegDataTab" onclick="$('#searchInput').prop('disabled', true);$('.contentContainer').hide();$('#cegContainer').show();$('.activeTab').removeClass('activeTab');$(this).addClass('activeTab');docLoaded('ceg');">CEG</div>
                 <div id="clarificationDataTab" onclick="$('#searchInput').prop('disabled', true);$('.contentContainer').hide();$('#ruleClarificationContainer').show();$('.activeTab').removeClass('activeTab');$(this).addClass('activeTab');">Rules Clarifications</div>
                 <div id="policyDataTab" onclick="$('#searchInput').prop('disabled', true);$('.contentContainer').hide();$('#policyClarificationContainer').show();$('.activeTab').removeClass('activeTab');$(this).addClass('activeTab');">Policy Clarifications</div>
@@ -31,24 +31,24 @@
         </div>
         <div class="content">
             <div class="contentContainer" id="cardDataContainer">
-                <div class="sectionDescription">This is a list of all cards alphabetically. Select a card to view its images, text, and known rulings. (Updated 06/03/2026)</div>
+                <div class="sectionDescription">This is a list of all cards alphabetically. Select a card to view its images, text, and known rulings. (Updated 07/10/2026)</div>
                 <div class="sectionContent" id="cardContent"></div> 
             </div>
             <div class="contentContainer" id="ruleDataContainer" style="display: none;">
-                <div class="sectionDescription">This is a list of all known additional rulings from the SWU website. Rules are grouped by set, then alphabetically by card name, then by date. (Updated 06/03/2026)</div>
+                <div class="sectionDescription">This is a list of all known additional rulings from the SWU website. Rules are grouped by set, then alphabetically by card name, then by date. (Updated 07/10/2026)</div>
                 <div class="sectionContent" id="ruleContent"></div> 
             </div>
             <div class="contentContainer" id="crContainer" style="display:none;">
-                <div><a class="pdfLink" target="_blank" href="rules_documents/SWH_Comp-Rules_v7.0.pdf">Direct Link to PDF</a></div>
-                <object onload="docLoaded('cr');" onerror="$(this).hide();$('#crFallback').show();" data="rules_documents/SWH_Comp-Rules_v7.0.pdf" type="application/pdf" width="100%" height="100%">
+                <div><a class="pdfLink" target="_blank" href="rules_documents/SWH_Comp_Rules_v8_0_e26603c6e1.pdf">Direct Link to PDF</a></div>
+                <object onload="docLoaded('cr');" onerror="$(this).hide();$('#crFallback').show();" data="rules_documents/SWH_Comp_Rules_v8_0_e26603c6e1.pdf" type="application/pdf" width="100%" height="100%">
                     <param name="download" value="true">
                 </object>
                 <div class="pdfMessage">If you are only able to see an image of the first page of the PDF or you see this message above the PDF, your browser does not support the PDF viewer. Please click the link above to view and download the PDF from there so it is available to you offline.</div>
                 <div id="crFallback" style="display: none;"><div></div></div>
             </div>
             <div class="contentContainer" id="cegContainer" style="display:none;">
-                <div><a class="pdfLink" target="_blank" href="rules_documents/Star_Wars_Unlimited_Comprehensive_Event_Guide_a34d99b91d.pdf">Direct Link to PDF</a></div>
-                <object onload="docLoaded('ceg');" onerror="$(this).hide();$('#cegFallback').show();" data="rules_documents/Star_Wars_Unlimited_Comprehensive_Event_Guide_a34d99b91d.pdf" type="application/pdf" width="100%" height="100%">
+                <div><a class="pdfLink" target="_blank" href="rules_documents/Comprehensive_Event_Guide_6_26_26_0110535972.pdf">Direct Link to PDF</a></div>
+                <object onload="docLoaded('ceg');" onerror="$(this).hide();$('#cegFallback').show();" data="rules_documents/Comprehensive_Event_Guide_6_26_26_0110535972.pdf" type="application/pdf" width="100%" height="100%">
                     <param name="download" value="true">
                 </object>
                 <div class="pdfMessage">If you are only able to see an image of the first page of the PDF or you see this message above the PDF, your browser does not support the PDF viewer. Please click the link above to view and download the PDF from there so it is available to you offline.</div>
@@ -72,11 +72,7 @@
                     <h1>Premier</h1>
                     <h2>Suspended Cards</h2>
                     <ul>
-                        <li>Boba Fett - Collecting the Bounty</li>
-                        <li>Jango Fett - Concealing the Conspiracy</li>
-                        <li>DJ - Blatant Thief</li>
-                        <li>Triple Dark Raid</li>
-                        <li>Force Throw</li>
+                        <li>N/A</li>
                     </ul>
                     <h2>Banned Cards</h2>
                     <ul>
@@ -91,6 +87,20 @@
                     <h2>Suspended Cards</h2>
                     <ul>
                         <li>N/A</li>
+                    </ul>
+                    <h2>Banned Cards</h2>
+                    <ul>
+                        <li>N/A</li>
+                    </ul>
+                    <h2>Restricted Cards</h2>
+                    <ul>
+                        <li>N/A</li>
+                    </ul>
+                    <h1>Eternal</h1>
+                    <h2>Suspended Cards</h2>
+                    <ul>
+                        <li>IG-2000</li>
+                        <li>War Juggernaut</li>
                     </ul>
                     <h2>Banned Cards</h2>
                     <ul>
