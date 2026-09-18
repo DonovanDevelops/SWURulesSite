@@ -154,6 +154,7 @@ variant_order.append("GC Champion")
 variant_order.append("Event Exclusive")
 variant_order.append("Convention Exclusive")
 variant_order.append("Movie Promo")
+variant_order.append("Costco Exclusive")
 
 # Function to get all cards from the SWU API
 # Returns an array of card objects and their associated data
